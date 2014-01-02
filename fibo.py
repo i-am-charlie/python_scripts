@@ -2,7 +2,6 @@
 	This was written to initialize a git repository of all of my exploratory
 	python scripts.
 	"""
-
 def fibo(x):
 	if x == 0:
 		return 0
