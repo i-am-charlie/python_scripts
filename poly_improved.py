@@ -20,4 +20,27 @@ def poly_eval(x, coeffs):
     y[0] = 1                    
     X=np.cumprod(y)         # creates a vector y = (1, x, x^2, ..., x^n)
 
-    return np.dot(coeffs, X)    
+    return np.dot(coeffs, X)   
+
+""" We can now test whether this is, indeed, more efficient than our first program
+	which relied on loops.
+	"""
+from random import uniform
+import time
+
+
+coef = np.random.randint(8,size=1000) 
+x=2.0
+
+def p(x, cof): return sum(a* x**i for i,a in enumerate(cof))
+
+start = time.time()
+p(x, coef)
+elapsed = (time.time()-start)
+
+start_imp = time.time()
+poly_eval(x, coef)
+elapsed_imp = (time.time() - start_imp)
+
+print 'It took ', elapsed, ' seconds to run the loopy algo.\n'
+print 'And it took', elapsed_imp, ' seconds to run the algo using nparrays.\n'
